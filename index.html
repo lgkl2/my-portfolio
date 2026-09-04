@@ -107,7 +107,7 @@
 
   .hero{
     position: relative;
-    padding: 150px 0 0;
+    padding: 90px 0 0;
     text-align: center;
     overflow: hidden;
   }
@@ -141,7 +141,7 @@
     gap: 16px;
     justify-content:center;
     flex-wrap: wrap;
-    padding-bottom: 300px;
+    padding-bottom: 90px;
   }
 
   .btn{
@@ -240,49 +240,43 @@
   }
 
   /* ---------- about ---------- */
+  /* Rebuilt with a responsive grid instead of hardcoded pixel offsets,
+     so the photo + two note cards stack cleanly on narrow screens. */
 
   .about-grid{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
+    display:grid;
+    grid-template-columns: minmax(200px, 340px) 1fr;
+    align-items: start;
+    gap: 50px 60px;
   }
 
   .about-photo{
     position: relative;
-    right:345px;
-    width: 70%;
-    top:70px;
-    max-width: 400px;
+    grid-column: 1;
+    grid-row: 1 / 3;
+    align-self: start;
+    margin-top: 40px;
   }
 
   .about-photo img.camera-photo{
     display: block;
-    width: 110%;
+    width: 100%;
     height: auto;
     border-radius: 12px;
     filter: drop-shadow(4px 5px 0 var(--ink));
   }
 
   .about-text1{
-    max-width: 550px;
-    position relative;
-    left:250px;
-    bottom:230px;
+    grid-column: 2;
+    grid-row: 1;
+    margin-top: 40px;
   }
 
-   .about-text2{
-    max-width: 550px;
-    position relative;
-    left:350px;
-    bottom:250px;
+  .about-text2{
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 40px;
   }
-
-  #about .section-title {
-  position: relative;
-  top: 20px;
- 
-}
 
   .about-text p{
     font-size: 0.96rem;
@@ -290,7 +284,7 @@
     margin-bottom: 14px;
   }
 
-  .about-text p:last-child{ margin-bottom: 1; }
+  .about-text p:last-child{ margin-bottom: 0; }
 
   /* ---------- skills ---------- */
 
@@ -424,7 +418,27 @@
   @media (max-width: 760px){
     nav ul{ gap: 16px; }
     nav ul li:nth-child(4){ display:none; }
-    .about-grid{ grid-template-columns: 1fr; }
+
+    .about-grid{
+      grid-template-columns: 1fr;
+    }
+    .about-photo{
+      grid-column: 1;
+      grid-row: auto;
+      max-width: 280px;
+      margin: 0 auto 10px;
+    }
+    .about-text1{
+      grid-column: 1;
+      grid-row: auto;
+      margin-top: 30px;
+    }
+    .about-text2{
+      grid-column: 1;
+      grid-row: auto;
+      margin-top: 40px;
+    }
+
     .skills-grid{ grid-template-columns: 1fr 1fr; }
     .projects-grid{ grid-template-columns: 1fr; }
   }
@@ -457,7 +471,7 @@
 <!-- ============ HERO ============ -->
 <header class="hero">
   <div class="wrap" style="position:relative;">
-    
+
     <h1>Logika Gurung</h1>
     <p class="role hand">Graduate Engineer</p>
 
@@ -466,7 +480,6 @@
       <a href="#contact" class="btn btn-outline">Get in touch</a>
     </div>
   </div>
-</div>
 </header>
 
 <!-- ============ ABOUT ============ -->
@@ -485,15 +498,12 @@
         <img src="star3.png" class="scatter-star" alt="" style="width:38px; height:38px; bottom:36px; left:-38px;">
       </div>
 
-      <div class="about-text1 note">
+      <div class="about-text1 note about-text">
         <img src="star1.png" class="pin-star" alt="">
-       <p>I'm a bioengineering graduate who enjoys turning ideas into something tangible, from CAD and prototype building to creating things from scratch. I’m happiest working hands-on, figuring out how things work and finding ways to make them better. That mindset extends beyond engineering too; I enjoy upcycling thrifted finds, and I'm passionate about using practical ideas to make a positive impact. When I’m not building, you’ll usually find me behind a camera, capturing the people, places and moments worth remembering.</p>
+        <p>I'm a bioengineering graduate who enjoys turning ideas into something tangible, from CAD and prototype building to creating things from scratch. I’m happiest working hands-on, figuring out how things work and finding ways to make them better. That mindset extends beyond engineering too; I enjoy upcycling thrifted finds, and I'm passionate about using practical ideas to make a positive impact. When I’m not building, you’ll usually find me behind a camera, capturing the people, places and moments worth remembering.</p>
       </div>
-    </div>
-  </div>
-</section>
- 
-<div class="about-text2 note">
+
+      <div class="about-text2 note about-text">
         <img src="star1.png" class="pin-star" alt="">
         <p>Outside of engineering, I enjoy giving back and bringing people together. As Charities &amp; Volunteering Officer for Sheffield Women in STEM, I organised events and fundraising initiatives for local charities. As secretary in our university's Nepalese Society, I also helped grow engagement from fewer than 10 people to over 30 at our events through social media and collaborations. These experiences have shown me how one person taking the initiative can create momentum and inspire wider community involvement.</p>
       </div>
