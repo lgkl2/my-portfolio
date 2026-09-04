@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tongue surface & sample holder — Logika Gurung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-green: #24423a; --bg-green-dark: #1c352e; --grid-line: rgba(255,255,255,0.055);
+    --card-cream: #f3e3a1; --card-cream-shadow: #d9c076; --ink: #1c1c1a; --cream-text: #f3ead0;
+    --accent-sage: #8ca392; --reason-bg: #dcecda; --reason-border: #2a4a3e;
+  }
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  body{
+    background-color: var(--bg-green);
+    background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 34px 34px;
+    color: var(--cream-text); font-family: 'Poppins', sans-serif; font-weight: 300;
+  }
+  .poster-link{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background: var(--card-cream); color: var(--ink); border: 2px solid var(--ink);
+    border-radius: 12px; padding: 14px 18px; margin: 40px 0 0;
+    font-family:'Kalam', cursive; font-weight:700; font-size: 1rem;
+    text-decoration:none; box-shadow: 4px 4px 0 var(--card-cream-shadow), 4px 4px 0 2px var(--ink);
+    transition: transform 0.15s ease;
+  }
+  .poster-link:hover{ transform: translate(-2px,-2px); }
+
+  .page-nav{
+    display:flex; justify-content: space-between; align-items:center;
+    margin-top: 26px; padding-top: 20px; border-top: 2px solid rgba(255,255,255,0.15);
+    font-family:'Kalam', cursive; font-weight:700; font-size: 0.98rem;
+  }
+  .page-nav a{ text-decoration: underline; text-underline-offset: 4px; }
+  .page-nav .nav-next{ margin-left: auto; text-align: right; }
+
+  a{ color: inherit; }
+  .wrap{ max-width: 800px; margin: 0 auto; padding: 0 32px; }
+  .hand{ font-family: 'Kalam', cursive; }
+  nav{ position: sticky; top: 0; z-index: 20; background: var(--bg-green-dark); border-bottom: 2px solid var(--ink); }
+  nav .wrap{ display:flex; align-items:center; justify-content: space-between; padding: 18px 32px; max-width:1000px; }
+  nav .brand{ font-family:'Kalam', cursive; font-size: 1.25rem; font-weight: 700; }
+  .back-link{ font-family:'Kalam', cursive; font-weight:700; text-decoration: underline; text-underline-offset:4px; font-size: 0.98rem; }
+
+  main{ padding: 56px 0 90px; }
+
+  .title-block{ margin-bottom: 34px; }
+  .title-block h1{ font-family:'Kalam', cursive; font-weight:700; font-size: clamp(1.8rem, 4vw, 2.6rem); text-shadow: 2px 2px 0 var(--ink); }
+  .title-block p.subtitle{ font-family:'Kalam', cursive; font-size: 1.1rem; opacity:0.9; margin-top:6px; }
+
+  .tag-row{ display:flex; flex-wrap:wrap; gap: 8px; margin-top: 16px; }
+  .tag{ font-size: 0.78rem; font-weight: 500; background: var(--card-cream); color: var(--ink); border: 1.5px solid var(--ink); padding: 4px 12px; border-radius: 999px; }
+
+  .note{ position: relative; background: var(--card-cream); color: var(--ink); border: 2.5px solid var(--ink); border-radius: 20px; padding: 28px 30px; box-shadow: 6px 6px 0 var(--card-cream-shadow), 6px 6px 0 2.5px var(--ink); margin-bottom: 30px; }
+
+  .part-label{ font-family:'Kalam', cursive; font-weight:700; font-size:1.3rem; margin-bottom: 16px; }
+
+  /* --- Image sizing: keeps the two images side-by-side and smaller than full-width --- */
+  .img-row{ display:flex; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; justify-content: center; }
+  .img-box{
+    flex: 1 1 200px;
+    max-width: 260px;
+    aspect-ratio: 4/3;
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    background: #e3d9b8 center/cover no-repeat;
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.78rem; color:#5a5142; text-align:center; padding: 10px;
+  }
+  .img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+  h4.field{ font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 4px; color: var(--ink); }
+  p.field-body{ font-size: 0.92rem; line-height: 1.6; margin-bottom: 14px; }
+
+  .reasoning{ background: var(--reason-bg); border-left: 4px solid var(--reason-border); border-radius: 0 8px 8px 0; padding: 16px 18px; margin-bottom: 16px; }
+  .reasoning h4{ font-size: 0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:#1a3128; margin-bottom: 8px; }
+  .reasoning ul{ padding-left: 18px; }
+  .reasoning li{ font-size: 0.9rem; line-height: 1.6; color:#1a3128; margin-bottom: 6px; }
+  .reasoning li:last-child{ margin-bottom:0; }
+
+  .outcome{ background: var(--bg-green); border-radius: 8px; padding: 16px 18px; }
+  .outcome h4{ font-size: 0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color: var(--card-cream); margin-bottom: 6px; }
+  .outcome p{ font-size: 0.9rem; line-height: 1.6; color: var(--cream-text); }
+
+  footer{ text-align:center; padding: 34px 0 50px; font-family:'Kalam', cursive; font-size: 0.9rem; opacity: 0.65; }
+
+  @media (max-width: 600px){ .img-row{ flex-direction: column; align-items: center; } .img-box{ max-width: 100%; width: 100%; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">LG.</div>
+    <a href="index.html#projects" class="back-link">← Back to projects</a>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+
+    <div class="title-block">
+      <h1 class="hand">Biomimetic tongue surface &amp; sample holder</h1>
+      <p class="subtitle">Two custom CAD components for an oral tribology test platform to evaluate how different surface(cheese) textures affect friction and wear in oral environments.</p>
+      <div class="tag-row">
+        <span class="tag">Fusion 360</span>
+        <span class="tag">SLA mould design</span>
+        <span class="tag">Design for manufacture</span>
+      </div>
+    </div>
+
+    <!-- PART 1: TONGUE SURFACE -->
+    <div class="note">
+      <div class="part-label">Part 1 — Tongue surface</div>
+
+      <div class="img-row">
+        <div class="img-box">
+          <img src="cad1.png" alt="CAD render of tongue surface mould">
+        </div>
+        <div class="img-box">
+          <img src="tongue_fabricated.jpeg" alt="Fabricated silicone tongue surface">
+        </div>
+      </div>
+
+      <h4 class="field">What it did</h4>
+      <p class="field-body">Modelled a negative mould in Fusion 360 replicating human tongue micro-topography — two distinct papillae geometries at physiologically accurate dimensions and densities, based on published morphology data. Designed for SLA printing and silicone casting.</p>
+
+      <div class="reasoning">
+        <h4>💭 Design reasoning</h4>
+        <ul>
+          <li>Modelled the mould as a negative cavity rather than the papillae surface directly, since casting requires the inverse geometry — a decision driven by the fabrication method (SLA print → silicone cast).</li>
+          <li>Preserved two distinct papillae shapes rather than simplifying to one generic bump: spreading load differently — consistent with filiform papillae's role in grip and food manipulation rather than sensing.</li>
+          <li>Selected Ecoflex 00-30 silicone specifically for its compliance, verified via compression testing to approximate real tongue tissue stiffness — a stiffer material would have under-represented the soft, deformable contact behaviour that oral tribology is trying to measure.</li>
+          <li>Sized the mould at 40mm diameter, 3mm depth to match the UMT tribology platform's fixture — a constraint from the equipment, not an arbitrary choice.</li>
+          <li>Chose SLA printing over manually drilling individual cavities (the approach used in prior literature): SLA reproduces the full array with repeatable geometry in one step.</li>
+        </ul>
+      </div>
+
+      <h4 class="field">What changed</h4>
+      <p class="field-body">Turned a 2D literature dataset into a working physical surface with the correct micro-geometry and correct mechanical compliance — replacing what would otherwise have been a generic, flat, overly stiff test surface with no basis in real tongue anatomy or behaviour.</p>
+
+      <h4 class="field">Who benefited</h4>
+      <p class="field-body">Anyone using the rig gets physiologically realistic, repeatable contact conditions, making resulting friction/texture measurements more trustworthy and comparable to real oral processing.</p>
+
+      <div class="outcome">
+        <h4>✓ Outcome</h4>
+        <p>Profilometry comparison of the fabricated silicone surface against the original CAD confirmed the papillae dimensions translated accurately from digital design to physical part, validating that the fabrication process preserved the intended micro-geometry.</p>
+      </div>
+    </div>
+
+    <!-- PART 2: SAMPLE HOLDER -->
+    <div class="note">
+      <div class="part-label">Part 2 — Cheese sample holder</div>
+
+      <div class="img-row">
+        <div class="img-box">
+          <img src="drawing.png" alt="Engineering drawing of the cheese sample holder">
+        </div>
+        <div class="img-box">
+          <img src="cheese_holder.png" alt="CAD render of the cheese sample holder">
+        </div>
+      </div>
+
+      <h4 class="field">What it did</h4>
+      <p class="field-body">Designed a holder with a recessed cavity controlling sample protrusion (~1.2mm) and a tapered shaft for self-aligning, even clamping within the rig's collet system.</p>
+
+      <div class="reasoning">
+        <h4>💭 Design reasoning</h4>
+        <ul>
+          <li>The shaft uses a tapered profile — larger diameter at the base, narrowing toward the tip — the same self-centering principle used in Morse tapers and collet systems. As the shaft seats into the collet, the taper wedges into alignment automatically, converting axial clamping force into consistent radial grip without needing a separate centering step.</li>
+          <li>Sample left slightly protruding to guarantee contact at a known, repeatable point rather than against the holder itself.</li>
+          <li>Designed for SLA printing in rigid resin rather than a softer material, since the holder needed to stay dimensionally stable under repeated clamping — compliance needed to come from the sample being tested, not the fixture.</li>
+        </ul>
+      </div>
+
+      <h4 class="field">What changed</h4>
+      <p class="field-body">Removed manual, inconsistent sample placement — position, depth, and alignment became mechanically fixed rather than hand-set each trial.</p>
+
+      <h4 class="field">Who benefited</h4>
+      <p class="field-body">Anyone running repeated trials gets comparable data across runs, since mounting variability is no longer a confounding factor in the results.</p>
+
+      <div class="outcome">
+        <h4>✓ Outcome</h4>
+        <p>The holder performed reliably across repeated test cycles, maintaining consistent sample positioning and enabling reproducible contact conditions trial to trial.</p>
+      </div>
+    </div>
+
+    <a href="poster_3.pdf" target="_blank" class="poster-link">
+      📄 View the full research poster (PDF)
+    </a>
+
+    <div class="page-nav">
+      <a class="nav-prev" href="project3.html">← Precious Plastics</a>
+      <a class="nav-next" href="project2.html">Cinematic Drone Build →</a>
+    </div>
+  </div>
+</main>
+
+<footer>made with care, one grid square at a time.</footer>
+
+</body>
+</html>

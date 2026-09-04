@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extrusion nozzle fabrication — Logika Gurung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-green: #24423a; --bg-green-dark: #1c352e; --grid-line: rgba(255,255,255,0.055);
+    --card-cream: #f3e3a1; --card-cream-shadow: #d9c076; --ink: #1c1c1a; --cream-text: #f3ead0;
+    --accent-sage: #8ca392; --reason-bg: #dcecda; --reason-border: #2a4a3e;
+  }
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  body{
+    background-color: var(--bg-green);
+    background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 34px 34px;
+    color: var(--cream-text); font-family: 'Poppins', sans-serif; font-weight: 300;
+  }
+  .page-nav{
+    display:flex; justify-content: space-between; align-items:center;
+    margin-top: 26px; padding-top: 20px; border-top: 2px solid rgba(255,255,255,0.15);
+    font-family:'Kalam', cursive; font-weight:700; font-size: 0.98rem;
+  }
+  .page-nav a{ text-decoration: underline; text-underline-offset: 4px; }
+  .page-nav .nav-next{ margin-left: auto; text-align: right; }
+  a{ color: inherit; }
+  .wrap{ max-width: 800px; margin: 0 auto; padding: 0 32px; }
+  .hand{ font-family: 'Kalam', cursive; }
+  nav{ position: sticky; top: 0; z-index: 20; background: var(--bg-green-dark); border-bottom: 2px solid var(--ink); }
+  nav .wrap{ display:flex; align-items:center; justify-content: space-between; padding: 18px 32px; max-width:1000px; }
+  nav .brand{ font-family:'Kalam', cursive; font-size: 1.25rem; font-weight: 700; }
+  .back-link{ font-family:'Kalam', cursive; font-weight:700; text-decoration: underline; text-underline-offset:4px; font-size: 0.98rem; }
+
+  main{ padding: 56px 0 90px; }
+
+  .title-block{ margin-bottom: 34px; }
+  .title-block h1{ font-family:'Kalam', cursive; font-weight:700; font-size: clamp(1.8rem, 4vw, 2.6rem); text-shadow: 2px 2px 0 var(--ink); }
+  .title-block p.subtitle{ font-family:'Kalam', cursive; font-size: 1.1rem; opacity:0.9; margin-top:6px; }
+
+  .tag-row{ display:flex; flex-wrap:wrap; gap: 8px; margin-top: 16px; }
+  .tag{ font-size: 0.78rem; font-weight: 500; background: var(--card-cream); color: var(--ink); border: 1.5px solid var(--ink); padding: 4px 12px; border-radius: 999px; }
+
+  .note{ position: relative; background: var(--card-cream); color: var(--ink); border: 2.5px solid var(--ink); border-radius: 20px; padding: 28px 30px; box-shadow: 6px 6px 0 var(--card-cream-shadow), 6px 6px 0 2.5px var(--ink); margin-bottom: 30px; }
+
+  /* --- Single centered image, bigger than the two-image rows --- */
+  .img-row{ display:flex; justify-content: center; margin-bottom: 18px; }
+  .img-box{
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 4/3;
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    background: #e3d9b8 center/cover no-repeat;
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.78rem; color:#5a5142; text-align:center; padding: 10px;
+  }
+  .img-box img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  h4.field{ font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 4px; color: var(--ink); }
+  p.field-body{ font-size: 0.92rem; line-height: 1.6; margin-bottom: 14px; }
+
+  .reasoning{ background: var(--reason-bg); border-left: 4px solid var(--reason-border); border-radius: 0 8px 8px 0; padding: 16px 18px; margin-bottom: 16px; }
+  .reasoning h4{ font-size: 0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:#1a3128; margin-bottom: 8px; }
+  .reasoning ul{ padding-left: 18px; }
+  .reasoning li{ font-size: 0.9rem; line-height: 1.6; color:#1a3128; margin-bottom: 6px; }
+  .reasoning li:last-child{ margin-bottom:0; }
+
+  .outcome{ background: var(--bg-green); border-radius: 8px; padding: 16px 18px; }
+  .outcome h4{ font-size: 0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color: var(--card-cream); margin-bottom: 6px; }
+  .outcome p{ font-size: 0.9rem; line-height: 1.6; color: var(--cream-text); }
+
+  footer{ text-align:center; padding: 34px 0 50px; font-family:'Kalam', cursive; font-size: 0.9rem; opacity: 0.65; }
+
+  @media (max-width: 600px){ .img-box{ max-width: 100%; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">LG.</div>
+    <a href="index.html#projects" class="back-link">← Back to projects</a>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+
+    <div class="title-block">
+      <h1 class="hand">Extrusion nozzle — design, manufacture &amp; defect troubleshooting</h1>
+      <p class="subtitle">Sustainable manufacturing project, primary ownership of fabrication in a two-person team</p>
+      <div class="tag-row">
+        <span class="tag">Turning &amp; milling</span>
+        <span class="tag">Manufacturing troubleshooting</span>
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="img-row">
+        <!-- ⬇⬇ PUT YOUR NOZZLE PHOTO HERE ⬇⬇ -->
+        <div class="img-box">
+          <img src="nozzle.png" alt="Machined extrusion nozzle">
+        </div>
+      </div>
+
+      <h4 class="field">What it did</h4>
+      <p class="field-body">Machined the nozzle body(part of an Extruder machine) on a lathe, then drilled and threaded the mounting holes on the milling machine, trimming fixing screws to length, all on manual workshop equipment, following Precious Plastics' build guide for the design.</p>
+
+      <div class="reasoning">
+        <h4>💭 Design reasoning</h4>
+        <ul>
+          <li>Took primary ownership of fabrication within a two-person team, meaning the machining plan had to account for what could actually be achieved accurately by hand, not just what the CAD file specified.</li>
+          <li>After manufacture, identified a tolerance defect: a screw-thread hole had been machined to the wrong size, preventing correct assembly.</li>
+          <li>Rather than re-ordering material and losing time and cost, diagnosed the root cause and engineered a corrective fix using a secondary mounting plate — solving the immediate problem without discarding the part.</li>
+        </ul>
+      </div>
+
+      <h4 class="field">What changed</h4>
+      <p class="field-body">Turned a manufacturing defect that would normally cause project delay and material waste into a working assembly, without needing to restart fabrication from scratch.</p>
+
+      <h4 class="field">Who benefited</h4>
+      <p class="field-body">The project stayed on schedule and within budget despite a real manufacturing error </p>
+
+      <h4 class="field">Limitation</h4>
+      <p class="field-body">fixed assembly hasn't been tested under load yet, so its long-term reliability is still unconfirmed. </p>
+
+      <div class="outcome">
+        <h4>✓ Outcome</h4>
+        <p>Functional extrusion nozzle, successfully corrected and integrated despite the initial tolerance defect.</p>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <a class="nav-prev" href="project2.html">← Cinematic Drone Build</a>
+      <a class="nav-next" href="project1.html">Final Year Project →</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>made with care, one grid square at a time.</footer>
+
+</body>
+</html>

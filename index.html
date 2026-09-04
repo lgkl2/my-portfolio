@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logika Gurung — Graduate Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-green: #24423a;
+    --bg-green-dark: #1c352e;
+    --grid-line: rgba(255,255,255,0.055);
+    --card-cream: #f3e3a1;
+    --card-cream-shadow: #d9c076;
+    --ink: #1c1c1a;
+    --cream-text: #f3ead0;
+    --star: #e9e9e9;
+    --star-shadow: #9a9a9a;
+    --accent-sage: #8ca392;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background-color: var(--bg-green);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 34px 34px;
+    color: var(--cream-text);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .hand{
+    font-family: 'Kalam', cursive;
+  }
+
+  .star{
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    filter: drop-shadow(0 3px 0 var(--star-shadow));
+    transition: transform 0.25s ease;
+  }
+
+  .star:hover{
+    transform: scale(1.15) rotate(-8deg);
+  }
+
+  /* ---------- nav ---------- */
+
+  nav{
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--bg-green-dark);
+    border-bottom: 2px solid var(--ink);
+  }
+
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  nav .brand{
+    font-family:'Kalam', cursive;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  nav ul{
+    display:flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  nav a{
+    text-decoration:none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--cream-text);
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+
+  nav a:hover{ opacity: 1; }
+
+  /* ---------- hero ---------- */
+
+  .hero{
+    position: relative;
+    padding: 150px 0 0;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero .eyebrow-mark{
+    font-family:'Kalam', cursive;
+    font-size: 1.1rem;
+    color: var(--accent-sage);
+    margin-bottom: 6px;
+  }
+
+  .hero h1{
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
+    font-size: clamp(2.6rem, 7vw, 4.4rem);
+    letter-spacing: 1px;
+    text-shadow: 3px 3px 0 var(--ink);
+  }
+
+  .hero p.role{
+    font-family: 'Kalam', cursive;
+    font-size: 1.3rem;
+    margin-top: 10px;
+    color: var(--cream-text);
+    opacity: 0.9;
+  }
+
+  .hero .cta-row{
+    margin-top: 34px;
+    display:flex;
+    gap: 16px;
+    justify-content:center;
+    flex-wrap: wrap;
+    padding-bottom: 300px;
+  }
+
+  .btn{
+    font-family:'Kalam', cursive;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration:none;
+    padding: 12px 26px;
+    border: 2.5px solid var(--ink);
+    border-radius: 14px;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    display:inline-block;
+  }
+
+  .btn:hover{
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+
+  .btn-fill{
+    background: var(--card-cream);
+    color: var(--ink);
+  }
+
+  .btn-outline{
+    background: transparent;
+    color: var(--cream-text);
+  }
+
+  .mountains{
+    display:block;
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
+
+  /* ---------- section heading ---------- */
+
+  .section{
+    position: relative;
+    padding: 85px 0;
+  }
+
+  .section-title{
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin-bottom: 44px;
+    display:flex;
+    align-items:center;
+    gap: 14px;
+  }
+
+  .section-title .star{
+    position: static;
+    width: 26px;
+    height: 26px;
+  }
+
+  /* ---------- sticky note card ---------- */
+
+  .note{
+    position: relative;
+    background: var(--card-cream);
+    color: var(--ink);
+    border: 2.5px solid var(--ink);
+    border-radius: 20px;
+    padding: 30px 32px;
+    box-shadow: 6px 6px 0 var(--card-cream-shadow), 6px 6px 0 2.5px var(--ink);
+  }
+
+  .note .star{
+    top: -18px;
+    left: 28px;
+  }
+
+  /* centered pinned star, sits above any yellow note */
+  .pin-star{
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    top: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 3px 0 var(--star-shadow));
+    z-index: 2;
+  }
+
+  /* loose decorative sparkles scattered around a section */
+  .scatter-star{
+    position: absolute;
+    filter: drop-shadow(0 2px 0 rgba(0,0,0,0.25));
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  /* ---------- about ---------- */
+
+  .about-grid{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .about-photo{
+    position: relative;
+    right:345px;
+    width: 70%;
+    top:70px;
+    max-width: 400px;
+  }
+
+  .about-photo img.camera-photo{
+    display: block;
+    width: 110%;
+    height: auto;
+    border-radius: 12px;
+    filter: drop-shadow(4px 5px 0 var(--ink));
+  }
+
+  .about-text1{
+    max-width: 550px;
+    position relative;
+    left:250px;
+    bottom:230px;
+  }
+
+   .about-text2{
+    max-width: 550px;
+    position relative;
+    left:350px;
+    bottom:250px;
+  }
+
+  #about .section-title {
+  position: relative;
+  top: 20px;
+ 
+}
+
+  .about-text p{
+    font-size: 0.96rem;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .about-text p:last-child{ margin-bottom: 1; }
+
+  /* ---------- skills ---------- */
+
+  .skills-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 30px;
+  }
+
+  .skill-note h3{
+    font-family:'Kalam', cursive;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+
+  .skill-note ul{
+    list-style: none;
+    display:flex;
+    flex-direction:column;
+    gap: 8px;
+    font-size: 0.92rem;
+  }
+
+  .skill-note li::before{
+    content: "✦ ";
+  }
+
+  /* ---------- projects ---------- */
+
+  .projects-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 34px;
+  }
+
+  .project-note .thumb{
+    width: 100%;
+    aspect-ratio: 16/14;
+    border: 2px solid var(--ink);
+    border-radius: 12px;
+    margin-bottom: 18px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .thumb.thumb-holder{ background-image: url('holder_render.png'); }
+  .thumb.thumb-drone{ background-image: url('drone_assembled.jpeg');  }
+  .thumb.thumb-plastics{ background-image: url('nozzle_photo1.png'); }
+
+  .project-note h3{
+    font-family:'Kalam', cursive;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .project-note p{
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .tag-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 8px;
+  }
+
+  .tag{
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: var(--bg-green);
+    color: var(--cream-text);
+    border: 1.5px solid var(--ink);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  .project-link{
+    display:inline-block;
+    margin-top: 14px;
+    font-family:'Kalam', cursive;
+    font-weight: 700;
+    font-size: 0.98rem;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* ---------- contact ---------- */
+
+  .contact-note{
+    text-align:center;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 50px 40px;
+  }
+
+  .contact-note h2{
+    font-family:'Kalam', cursive;
+    font-size: 2rem;
+    margin-bottom: 14px;
+  }
+
+  .contact-note p{
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 26px;
+  }
+
+  .contact-links{
+    display:flex;
+    gap: 16px;
+    justify-content:center;
+    flex-wrap: wrap;
+  }
+
+  footer{
+    text-align:center;
+    padding: 34px 0 50px;
+    font-family:'Kalam', cursive;
+    font-size: 0.9rem;
+    opacity: 0.65;
+  }
+
+  /* ---------- responsive ---------- */
+
+  @media (max-width: 900px){
+    .projects-grid{ grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 760px){
+    nav ul{ gap: 16px; }
+    nav ul li:nth-child(4){ display:none; }
+    .about-grid{ grid-template-columns: 1fr; }
+    .skills-grid{ grid-template-columns: 1fr 1fr; }
+    .projects-grid{ grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px){
+    .skills-grid{ grid-template-columns: 1fr; }
+    nav ul{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    .btn{ transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">LOGIKA GURUNG.</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap" style="position:relative;">
+    
+    <h1>Logika Gurung</h1>
+    <p class="role hand">Graduate Engineer</p>
+
+    <div class="cta-row">
+      <a href="#projects" class="btn btn-fill">See my work</a>
+      <a href="#contact" class="btn btn-outline">Get in touch</a>
+    </div>
+  </div>
+</div>
+</header>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <h2 class="section-title">
+      <img src="star1.png" class="star1" style="position:static; width:26px; height:26px;" alt="">
+      ABOUT ME
+    </h2>
+
+    <div class="about-grid">
+      <div class="about-photo">
+        <img src="camera.png" alt="Logika Gurung" class="camera-photo">
+        <img src="star3.png" class="scatter-star" alt="" style="width:18px; height:18px; bottom:-10px; left:-14px;">
+        <img src="star3.png" class="scatter-star" alt="" style="width:28px; height:28px; bottom:-24px; left:14px;">
+        <img src="star3.png" class="scatter-star" alt="" style="width:38px; height:38px; bottom:36px; left:-38px;">
+      </div>
+
+      <div class="about-text1 note">
+        <img src="star1.png" class="pin-star" alt="">
+       <p>I'm a bioengineering graduate who enjoys turning ideas into something tangible, from CAD and prototype building to creating things from scratch. I’m happiest working hands-on, figuring out how things work and finding ways to make them better. That mindset extends beyond engineering too; I enjoy upcycling thrifted finds, and I'm passionate about using practical ideas to make a positive impact. When I’m not building, you’ll usually find me behind a camera, capturing the people, places and moments worth remembering.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<div class="about-text2 note">
+        <img src="star1.png" class="pin-star" alt="">
+        <p>Outside of engineering, I enjoy giving back and bringing people together. As Charities &amp; Volunteering Officer for Sheffield Women in STEM, I organised events and fundraising initiatives for local charities. As secretary in our university's Nepalese Society, I also helped grow engagement from fewer than 10 people to over 30 at our events through social media and collaborations. These experiences have shown me how one person taking the initiative can create momentum and inspire wider community involvement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="section" id="skills">
+  <img src="star2.png" class="scatter-star" alt="" style="width:16px; height:16px; top:10px; left:3%;">
+  <img src="star2.png" class="scatter-star" alt="" style="width:26px; height:26px; top:34px; left:5.5%;">
+  <img src="star2.png" class="scatter-star" alt="" style="width:38px; height:38px; top:4px; left:7.5%;">
+  <div class="wrap">
+    <h2 class="section-title">
+      <img src="star1.png" class="star1" style="position:static; width:26px; height:26px;" alt="">
+      Skills
+    </h2>
+
+    <div class="skills-grid">
+      <div class="note skill-note">
+        <h3>Design &amp; CAD</h3>
+        <ul>
+          <li>CAD (Fusion 360 / SolidWorks)</li>
+          <li>Engineering drawings &amp; documentation</li>
+          <li>Design for manufacturability</li>
+          <li>FEA / CFD simulation (ANSYS)</li>
+        </ul>
+      </div>
+
+      <div class="note skill-note">
+        <h3>Fabrication &amp; hardware</h3>
+        <ul>
+          <li>Turning, milling &amp; drilling</li>
+          <li>Laser cutting &amp; SLA/FDM 3D printing</li>
+          <li>Manufacturing troubleshooting</li>
+          <li>Materials testing &amp; characterisation</li>
+        </ul>
+      </div>
+
+      <div class="note skill-note">
+        <h3>Electrical &amp; controls</h3>
+        <ul>
+          <li>Electrical component selection &amp; wiring</li>
+          <li>Soldering &amp; assembly</li>
+          <li>Embedded systems configuration (Betaflight)</li>
+        </ul>
+      </div>
+
+      <div class="note skill-note">
+        <h3>Lab &amp; analysis</h3>
+        <ul>
+          <li>MATLAB &amp; Simulink</li>
+          <li>Biomaterials characterisation</li>
+          <li>Data analysis (Python, R)</li>
+          <li>Cell culture technique</li>
+        </ul>
+      </div>
+
+      <div class="note skill-note">
+        <h3>General</h3>
+        <ul>
+          <li>Technical writing</li>
+          <li>Project management</li>
+          <li>Team collaboration</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="section" id="projects">
+  <img src="star3.png" class="scatter-star" alt="" style="width:18px; height:18px; top:14px; right:4%;">
+  <img src="star3.png" class="scatter-star" alt="" style="width:30px; height:30px; top:38px; right:6.5%;">
+  <img src="star3.png" class="scatter-star" alt="" style="width:42px; height:42px; top:6px; right:8.5%;">
+  <div class="wrap">
+    <h2 class="section-title">
+      <img src="star1.png" class="star1" style="position:static; width:26px; height:26px;" alt="">
+      Projects
+    </h2>
+
+    <div class="projects-grid">
+
+      <div class="note project-note">
+        <div class="thumb thumb-holder"></div>
+        <h3>Final Year Project</h3>
+        <p>Designed a biomimetic tongue surface and a custom sample holder in Fusion 360 for an oral tribology test rig.</p>
+        <div class="tag-row">
+          <span class="tag">Fusion 360</span>
+          <span class="tag">CAD</span>
+          <span class="tag">DFM</span>
+        </div>
+        <a href="project1.html" class="project-link">View project →</a>
+      </div>
+
+      <div class="note project-note">
+        <div class="thumb thumb-drone"></div>
+        <h3>Cinematic Drone — Avionics</h3>
+        <p>Selected components, wired and soldered the electrical system, and configured flight software for a 7-inch racing drone.</p>
+        <div class="tag-row">
+          <span class="tag">Electrical</span>
+          <span class="tag">Betaflight</span>
+          <span class="tag">Assembly</span>
+        </div>
+        <a href="project2.html" class="project-link">View project →</a>
+      </div>
+
+      <div class="note project-note">
+        <div class="thumb thumb-plastics"></div>
+        <h3>Precious Plastics Project</h3>
+        <p>Designed and machined an extrusion nozzle, then diagnosed and corrected a manufacturing tolerance defect.</p>
+        <div class="tag-row">
+          <span class="tag">Machining</span>
+          <span class="tag">Troubleshooting</span>
+        </div>
+        <a href="project3.html" class="project-link">View project →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section" id="contact">
+  <img src="star2.png" class="scatter-star" alt="" style="width:16px; height:16px; bottom:20px; left:12%;">
+  <img src="star2.png" class="scatter-star" alt="" style="width:24px; height:24px; bottom:44px; left:14.5%;">
+  <img src="star2.png" class="scatter-star" alt="" style="width:32px; height:32px; bottom:12px; left:16.5%;">
+  <div class="wrap">
+    <div class="note contact-note">
+      <h2>Let's talk</h2>
+      <p>I'm currently looking for graduate engineering roles. If you'd like to chat, my inbox is open.</p>
+      <div class="contact-links">
+        <a href="mailto:logikagurung@gmail.com" class="btn btn-fill">Email me</a>
+        <a href="https://linkedin.com/in/logikagurung" class="btn btn-outline" style="border-color: var(--ink); color: var(--ink); background: transparent;">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  made with care, one grid square at a time.
+</footer>
+
+</body>
+</html>

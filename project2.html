@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinematic drone — avionics — Logika Gurung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-green: #24423a; --bg-green-dark: #1c352e; --grid-line: rgba(255,255,255,0.055);
+    --card-cream: #f3e3a1; --card-cream-shadow: #d9c076; --ink: #1c1c1a; --cream-text: #f3ead0;
+    --accent-sage: #8ca392; --reason-bg: #dcecda; --reason-border: #2a4a3e;
+  }
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  body{
+    background-color: var(--bg-green);
+    background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 34px 34px;
+    color: var(--cream-text); font-family: 'Poppins', sans-serif; font-weight: 300;
+  }
+  a{ color: inherit; }
+  .wrap{ max-width: 800px; margin: 0 auto; padding: 0 32px; }
+  .hand{ font-family: 'Kalam', cursive; }
+  nav{ position: sticky; top: 0; z-index: 20; background: var(--bg-green-dark); border-bottom: 2px solid var(--ink); }
+  nav .wrap{ display:flex; align-items:center; justify-content: space-between; padding: 18px 32px; max-width:1000px; }
+  nav .brand{ font-family:'Kalam', cursive; font-size: 1.25rem; font-weight: 700; }
+  .back-link{ font-family:'Kalam', cursive; font-weight:700; text-decoration: underline; text-underline-offset:4px; font-size: 0.98rem; }
+
+  main{ padding: 56px 0 90px; }
+  .page-nav{
+    display:flex; justify-content: space-between; align-items:center;
+    margin-top: 26px; padding-top: 20px; border-top: 2px solid rgba(255,255,255,0.15);
+    font-family:'Kalam', cursive; font-weight:700; font-size: 0.98rem;
+  }
+  .page-nav a{ text-decoration: underline; text-underline-offset: 4px; }
+  .page-nav .nav-next{ margin-left: auto; text-align: right; }
+
+  .title-block{ margin-bottom: 34px; }
+  .title-block h1{ font-family:'Kalam', cursive; font-weight:700; font-size: clamp(1.8rem, 4vw, 2.6rem); text-shadow: 2px 2px 0 var(--ink); }
+  .title-block p.subtitle{ font-family:'Kalam', cursive; font-size: 1.1rem; opacity:0.9; margin-top:6px; }
+
+  .tag-row{ display:flex; flex-wrap:wrap; gap: 8px; margin-top: 16px; }
+  .tag{ font-size: 0.78rem; font-weight: 500; background: var(--card-cream); color: var(--ink); border: 1.5px solid var(--ink); padding: 4px 12px; border-radius: 999px; }
+
+  .note{ position: relative; background: var(--card-cream); color: var(--ink); border: 2.5px solid var(--ink); border-radius: 20px; padding: 28px 30px; box-shadow: 6px 6px 0 var(--card-cream-shadow), 6px 6px 0 2.5px var(--ink); margin-bottom: 30px; }
+
+  /* --- Two smaller side-by-side images, same format as the tongue project --- */
+  .img-row{ display:flex; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; justify-content: center; }
+  .img-box{
+    flex: 1 1 200px;
+    max-width: 260px;
+    aspect-ratio: 4/3;
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    background: #e3d9b8 center/cover no-repeat;
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.78rem; color:#5a5142; text-align:center; padding: 10px;
+  }
+  .img-box img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  h4.field{ font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 4px; color: var(--ink); }
+  p.field-body{ font-size: 0.92rem; line-height: 1.6; margin-bottom: 14px; }
+
+  .reasoning{ background: var(--reason-bg); border-left: 4px solid var(--reason-border); border-radius: 0 8px 8px 0; padding: 16px 18px; margin-bottom: 16px; }
+  .reasoning h4{ font-size: 0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color:#1a3128; margin-bottom: 8px; }
+  .reasoning ul{ padding-left: 18px; }
+  .reasoning li{ font-size: 0.9rem; line-height: 1.6; color:#1a3128; margin-bottom: 6px; }
+  .reasoning li:last-child{ margin-bottom:0; }
+
+  .outcome{ background: var(--bg-green); border-radius: 8px; padding: 16px 18px; }
+  .outcome h4{ font-size: 0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; color: var(--card-cream); margin-bottom: 6px; }
+  .outcome p{ font-size: 0.9rem; line-height: 1.6; color: var(--cream-text); }
+
+  footer{ text-align:center; padding: 34px 0 50px; font-family:'Kalam', cursive; font-size: 0.9rem; opacity: 0.65; }
+
+  @media (max-width: 600px){ .img-row{ flex-direction: column; align-items: center; } .img-box{ max-width: 100%; width: 100%; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">LG.</div>
+    <a href="index.html#projects" class="back-link">← Back to projects</a>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+
+    <div class="title-block">
+      <h1 class="hand">Cinematic drone build — avionics &amp; electrical systems</h1>
+      <p class="subtitle">Component selection, assembly, and flight-control configuration for a 7-inch racing drone</p>
+      <div class="tag-row">
+        <span class="tag">Electrical systems</span>
+        <span class="tag">Soldering &amp; assembly</span>
+        <span class="tag">Betaflight</span>
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="img-row">
+        <!-- ⬇⬇ PUT YOUR ASSEMBLED DRONE PHOTO HERE ⬇⬇ -->
+        <div class="img-box">
+          <img src="drone.png" alt="Assembled 7-inch FPV drone">
+        </div>
+        <!-- ⬇⬇ PUT YOUR SECOND DRONE PHOTO HERE (parts / build / goggles etc.) ⬇⬇ -->
+        <div class="img-box">
+          <img src="drone_assembled.jpeg" alt="FPV drone build components">
+        </div>
+      </div>
+
+      <h4 class="field">What it did</h4>
+      <p class="field-body">Contributed to the avionics of a 7-inch first-person-view cinematic drone as part of a student build team — selecting electrical components, assembling and soldering the power/control system, and configuring flight software.</p>
+
+      <div class="reasoning">
+        <h4>💭 Design reasoning</h4>
+        <ul>
+          <li>Selected the motor and battery combination by matching current draw, voltage, and KV rating — using a lower-KV motor with a higher-cell-count battery to provide sufficient torque for the larger 7-inch propellers without causing excessive motor speed.</li>  <li>Hand-assembled and soldered the flight controller, ESC, and power-distribution wiring, ensuring reliable electrical connections that could withstand the vibration and mechanical demands of flight.</li> <li>Configured Betaflight flight-controller firmware to calibrate motor response and tune flight characteristics, translating the hardware configuration into stable, controllable flight behaviour.</li>
+        </ul>
+      </div>
+
+      <h4 class="field">What changed</h4>
+      <p class="field-body">Took a set of individually-selected components with no guarantee of compatibility, and turned them into a working, tuned, flight-ready system — closing the loop between electrical component selection and real physical performance.</p>
+
+      <h4 class="field">Who benefited</h4>
+      <p class="field-body">The build team gained a working aircraft that performed reliably in flight; the process also built direct, hands-on experience translating electrical calculations into physical hardware choices that had to actually work under real load, not just on paper.</p>
+
+      <div class="outcome">
+        <h4>✓ Outcome</h4>
+        <p>Successfully assembled and flown as a 7-inch FPV racing drone, with flight characteristics tuned via Betaflight following assembly.</p>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <a class="nav-prev" href="project1.html">← Final Year Project</a>
+      <a class="nav-next" href="project3.html">Precious Plastics →</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>made with care, one grid square at a time.</footer>
+
+</body>
+</html>
